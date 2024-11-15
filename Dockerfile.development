@@ -1,0 +1,6 @@
+FROM ruby:3.1.6
+
+WORKDIR /app
+ENV BUNDLE_PATH /gems
+
+# RUN bundle install

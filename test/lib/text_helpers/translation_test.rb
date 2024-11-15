@@ -219,7 +219,7 @@ describe TextHelpers::Translation do
       end
 
       it "shows translation missing if an interpolated key isn't found at the same scope" do
-        expected = "Global? (translation missing: en.test.test_scoped_key)"
+        expected = "Global? (Translation missing: en.test.test_scoped_key)"
         assert_equal expected, @helper.text(:interpolated_scoped_key, scope: "test")
       end
 
@@ -259,7 +259,7 @@ describe TextHelpers::Translation do
         it "doesn't cascade if cascade: false is passed" do
           I18n.backend.store_translations(:en, {test_scoped_key: "a translation"})
 
-          expected = "Global? (translation missing: en.test.test_scoped_key)"
+          expected = "Global? (Translation missing: en.test.test_scoped_key)"
           assert_equal expected, @helper.text(:interpolated_scoped_key, scope: "test", cascade: false)
         end
       end
