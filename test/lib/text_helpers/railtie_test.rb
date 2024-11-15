@@ -15,6 +15,10 @@ describe TextHelpers::Railtie do
   let(:action_controller_base) { Class.new }
 
   let(:app) do
+    # Ref: https://github.com/rails/rails/issues/42319
+    # ref: https://github.com/getsentry/sentry-ruby/commit/e21fac946b3d2d03ff11aae86a98a49f42054df9#diff-18f3f95d0126b5b677a9472bd8f57b4123fdfbb3412f5762ebf1d5667ad67b7bR92
+    ActiveSupport::Dependencies.autoload_once_paths = []
+    ActiveSupport::Dependencies.autoload_paths = []
     Class.new(Rails::Application) do
       config.eager_load = false
 
@@ -30,7 +34,6 @@ describe TextHelpers::Railtie do
     stub_resets << stub_nested_const(TextHelpers::Railtie, "ActionView::Base", action_view_base)
     stub_resets << stub_nested_const(TextHelpers::Railtie, "ActionMailer::Base", action_mailer_base)
     stub_resets << stub_nested_const(TextHelpers::Railtie, "ActionController::Base", action_controller_base)
-
     app.initialize!
   end
 

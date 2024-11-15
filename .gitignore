@@ -4,7 +4,6 @@
 .config
 .yardoc
 .DS_Store
-.ruby-version
 .ruby-gemset
 
 Gemfile.lock

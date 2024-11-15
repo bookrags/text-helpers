@@ -1,0 +1,17 @@
+# To start all docker containers run: `docker-compose up`
+#
+version: '3'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile.development
+    command: bash -c "bundle install && bundle exec rake test"
+    volumes:
+      - .:/app
+      - gem_cache:/gems
+    tty: true
+    stdin_open: true
+
+volumes:
+  gem_cache: {}
